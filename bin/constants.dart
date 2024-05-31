@@ -4,7 +4,7 @@ const SERVER_URL = "http://localhost:8080/";
 
 DEFAULT_HEADER(String token){
   return {
-    'Authorization': 'Bearer $token',
+    'Authorization': token,
   };
 }
 

@@ -9,6 +9,7 @@ environment:
 dependencies:
   path: ^1.8.0
   http:
+  intl:
 
 dev_dependencies:
   lints: ^2.0.0
