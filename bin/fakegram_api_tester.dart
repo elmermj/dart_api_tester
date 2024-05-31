@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
+import 'constants.dart';
+import 'log.dart';
 
 import 'functions/get_all_posts.dart';
 import 'functions/login.dart';
@@ -36,5 +38,15 @@ Future<void> main() async {
   String username = "mattelmer";
   String? token = await Login(username: username, password: "123456789").commence();
   print(jsonEncode(token));
-  GetAllPosts(username: username, token: token!);
+  GetUserPosts(username: username, token: token!);
+  Log.yellow('Get timeline Auth Token : $token');
+  int page = 0;
+  int size = 2;
+  String requestURL = '${SERVER_URL}api/posts/$username/timeline?page=$page&size=$size';
+  Log.yellow('FROM ::: $requestURL');
+  final response = await http.post(Uri.parse(requestURL), headers: {
+    'Authorization': token!,
+    'Content-Type': 'application/json',
+  });
+  Log.yellow('Get timeline response (DS) [${response.statusCode}]: ${response.body}');
 }

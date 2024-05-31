@@ -6,16 +6,16 @@ import 'package:http/http.dart' as http;
 import '../models/post_response.dart';
 import 'downlaod_file.dart';
 
-class GetAllPosts {
+class GetUserPosts {
   String username;
   String token;
 
-  GetAllPosts({required this.username, required this.token}) {
+  GetUserPosts({required this.username, required this.token}) {
     commence();
   }
 
   commence() async {
-    var url = Uri.parse('${SERVER_URL}api/posts/$username/timeline');
+    var url = Uri.parse('${SERVER_URL}api/posts/$username/getUserPosts');
     var header = DEFAULT_HEADER(token);
     var response = await http.post(
       url,
