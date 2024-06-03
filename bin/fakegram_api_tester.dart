@@ -37,6 +37,7 @@ Future<void> registerUser() async {
 Future<void> main() async {
   String username = "mattelmer";
   String? token = await Login(username: username, password: "123456789").commence();
+  Log.yellow('Get USER Auth Token : $token');
   print(jsonEncode(token));
   GetUserPosts(username: username, token: token!);
   Log.yellow('Get timeline Auth Token : $token');
